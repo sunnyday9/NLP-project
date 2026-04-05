@@ -1,21 +1,21 @@
 {
-    "data_paths": {
-      "math500": "data/math_all.json",
-      "gsm8k": "data/gsm8k_test.jsonl",
-      "aime2024": "data/aime2024.json"
-    },
-    "models": [
-      "Qwen/Qwen2.5-Math-1.5B"
-    ],
-    "prompt_methods": [
-      "self_refine"
-    ],
-    "output_dir": "outputs/Qwen_refine",
-    "model_cache_dir": "model_cache",
-    "seed": 59421870,
-    "generation": {
-      "temperature": 0.2,
-      "top_p": 1.0,
-      "max_new_tokens": 512
-    }
+  "data_paths": {
+    "math500": "data/math_all.json",
+    "gsm8k": "data/gsm8k_test.jsonl",
+    "aime2024": "data/aime2024.json"
+  },
+  "models": [
+    "Qwen/Qwen2.5-Math-1.5B"
+  ],
+  "prompt_methods": [
+    "self_refine"
+  ],
+  "output_dir": "outputs/Qwen_refine",
+  "model_cache_dir": "model_cache",
+  "seed": 59421870,
+  "generation": {
+    "temperature": 0.2,
+    "top_p": 1.0,
+    "max_new_tokens": 8192
   }
+}

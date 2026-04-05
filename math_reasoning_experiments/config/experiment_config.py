@@ -11,7 +11,7 @@ from math_reasoning_experiments.data.schema import DatasetName
 class GenerationConfig:
     temperature: float = 0.2
     top_p: float = 1.0
-    max_new_tokens: int = 512
+    max_new_tokens: int = 8192
 
 
 @dataclass

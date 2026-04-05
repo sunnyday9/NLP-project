@@ -43,6 +43,7 @@ class HFModelBackend(ModelBackend):
 
     def generate(self, prompt: str, **gen_kwargs: Any) -> str:
         inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
+        input_len = inputs["input_ids"].shape[1]
         gen_params: Dict[str, Any] = {
             "temperature": gen_kwargs.get("temperature", 0.2),
             "top_p": gen_kwargs.get("top_p", 1.0),
@@ -50,7 +51,12 @@ class HFModelBackend(ModelBackend):
             "pad_token_id": self.tokenizer.pad_token_id,
         }
         outputs = self.model.generate(**inputs, **gen_params)
-        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        # Decode only the newly generated tokens (after the prompt) so that
+        # raw_output never contains the prompt text. This prevents
+        # _extract_final_answer from matching the prompt's own
+        # "Final Answer: <answer>" marker instead of the model's real answer.
+        new_tokens = outputs[0][input_len:]
+        return self.tokenizer.decode(new_tokens, skip_special_tokens=True)
 
     def name(self) -> str:
         return self._model_name

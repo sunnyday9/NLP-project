@@ -1,0 +1,1 @@
+{'accuracy': 0.3, 'response_length': {'mean': 1610.12, 'median': 301.5, 'std': 2869.271472970099}, 'reasoning_depth': {'mean': 1.56, 'median': 0.0, 'histogram_mode': 0.0}}
